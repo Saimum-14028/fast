@@ -1,0 +1,26 @@
+[data-theme="light"] {
+    --color-bg: #ffffff;
+    --color-fg: #000000;
+ }
+ 
+ [data-theme="dark"] {
+    --color-bg: #000000;
+    --color-fg: #ffffff;
+ }
+ 
+ body {
+   background-color: var(--color-bg);
+   color: var(--color-fg);
+   display: grid;
+ }
+ 
+ button {
+   font-size: 2rem;
+   font-weight: bold;
+   padding: 0.5rem 1rem;
+   transition: all var(--global-transition-time) ease-in-out;
+   border-radius: 2rem;
+   cursor: pointer;
+   color: var(--color-fg);
+   background-color: var(--color-bg);
+ }
