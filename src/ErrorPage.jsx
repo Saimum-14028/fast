@@ -1,9 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 const ErrorPage = () => {
     return (
-        <div className="w-screen flex items-center py-10">
+        <motion.div
+        animate={{
+        scale: [1, 2, 2, 1, 1],
+        rotate: [0, 0, 270, 270, 0],
+        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        className="w-screen flex items-center py-10">
             <Helmet>
                 <title>404 Not Found</title>
             </Helmet>
@@ -21,7 +28,7 @@ const ErrorPage = () => {
                 </div>
             
             </div>
-        </div>
+        </motion.div>
     );
 };
 
