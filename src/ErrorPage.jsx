@@ -1,8 +1,12 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
     return (
         <div className="w-screen flex items-center py-10">
+            <Helmet>
+                <title>404 Not Found</title>
+            </Helmet>
             <div className="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">
                     <div className="w-full lg:w-1/2 mx-8">
                         <div className="text-7xl text-green-500 font-dark font-extrabold mb-8"> 404</div>
