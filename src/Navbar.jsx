@@ -57,19 +57,23 @@ const Navbar = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
-                                    <button className="btn btn-sm  btn-ghost">{user.displayName}</button>
+                                    <button className="btn btn-sm btn-ghost">{user.displayName}</button>
                                 </li>
-                                <li><NavLink
+                                <li>
+                                <button className="btn btn-sm btn-ghost">
+                                <NavLink
                                     to="/dashboard"
                                     className={({ isActive, isPending }) =>
                                         isPending ? "pending" : isActive ? "text-red-500 underline" : ""
                                     }
                                     >
-                                    Dashboard
+                                    
                                 </NavLink>
+                                    Dashboard</button>
+                                    
                                 </li>
                                 <li>
-                                    <button className="btn btn-sm  btn-ghost"
+                                    <button className="btn btn-sm btn-ghost"
                                         onClick={logOut}
                                     >Logout</button>
                                 </li>
