@@ -66,10 +66,10 @@ const Navbar = () => {
                                     className={({ isActive, isPending }) =>
                                         isPending ? "pending" : isActive ? "text-red-500 underline" : ""
                                     }
-                                    >
+                                    >Dashboard
                                     
                                 </NavLink>
-                                    Dashboard</button>
+                                    </button>
                                     
                                 </li>
                                 <li>
