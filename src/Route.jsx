@@ -6,6 +6,18 @@ import Login from "./Login";
 import Register from "./Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "./DashboardLayout";
+import AdminRoute from "./AdminRoute";
+import Statistics from "./Statistics";
+import AllParcels from "./AllParcels";
+import AllUsers from "./AllUsers";
+import AllDeliveryMen from "./AllDeliveryMen";
+import UserRoute from "./UserRoute";
+import BookParcel from "./BookParcel";
+import MyParcels from "./MyParcels";
+import MyProfile from "./MyProfile";
+import DeliveryMenRoute from "./DeliveryMenRoute";
+import MyDeliveryList from "./MyDeliveryList";
+import MyReviews from "./MyReviews";
 
 const myCreatedRoute =  createBrowserRouter([
     {
@@ -31,12 +43,66 @@ const myCreatedRoute =  createBrowserRouter([
     {
         path: '/dashboard',
         element: (
-          <PrivateRoute>
-            <DashboardLayout></DashboardLayout>
-          </PrivateRoute>
+          <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>
         ),
         children: [
-            
+            // Admin Routes
+            {
+                index: true,
+                element: (
+                  <PrivateRoute><AdminRoute><Statistics></Statistics></AdminRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'all parcels',
+                element: (
+                  <PrivateRoute><AdminRoute><AllParcels></AllParcels></AdminRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'all users',
+                element: (
+                  <PrivateRoute><AdminRoute><AllUsers></AllUsers></AdminRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'all delivery men',
+                element: (
+                  <PrivateRoute><AdminRoute><AllDeliveryMen></AllDeliveryMen></AdminRoute></PrivateRoute>
+                ),
+            },
+            // User Routes
+            {
+                path: 'book a parcel',
+                element: (
+                  <PrivateRoute><UserRoute><BookParcel></BookParcel></UserRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'my parcels',
+                element: (
+                  <PrivateRoute><UserRoute><MyParcels></MyParcels></UserRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'my profile',
+                element: (
+                  <PrivateRoute><UserRoute><MyProfile></MyProfile></UserRoute></PrivateRoute>
+                ),
+            },
+            // Delivery Men Routes
+            {
+                path: 'my delivery list',
+                element: (
+                  <PrivateRoute><DeliveryMenRoute><MyDeliveryList></MyDeliveryList></DeliveryMenRoute></PrivateRoute>
+                ),
+            },
+            {
+                path: 'my reviews',
+                element: (
+                  <PrivateRoute><DeliveryMenRoute><MyReviews></MyReviews></DeliveryMenRoute></PrivateRoute>
+                ),
+            },
         ]
     }
 ])
