@@ -77,11 +77,12 @@ const BookParcel = () => {
         }
 
         const status = "Pending";
-        const booking_date = moment().format('ddd MMM D YYYY hh:mm:ss');
+        const booking_date = moment().format('YYYY-MM-DD');
         const approximate_delivery_date = "";
         const delivery_men_id = '';
+        const payment_status = "Unpaid";
 
-        const newParcel = { name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, cost, delivery_address, requestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id};
+        const newParcel = { name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, cost, delivery_address, requestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id, payment_status};
 
        //  console.log(newParcel);
 

@@ -18,6 +18,7 @@ import MyProfile from "./MyProfile";
 import DeliveryMenRoute from "./DeliveryMenRoute";
 import MyDeliveryList from "./MyDeliveryList";
 import MyReviews from "./MyReviews";
+import UpdateParcel from "./UpdateParcel";
 
 const myCreatedRoute =  createBrowserRouter([
     {
@@ -77,6 +78,13 @@ const myCreatedRoute =  createBrowserRouter([
                 element: (
                   <PrivateRoute><UserRoute><BookParcel></BookParcel></UserRoute></PrivateRoute>
                 ),
+            },
+            {
+              path : "update a parcel/:id",
+              element : (
+                <PrivateRoute><UserRoute><UpdateParcel></UpdateParcel></UserRoute></PrivateRoute>
+              ),
+              loader: ({params}) => fetch(`http://localhost:5000/parcels/${params.id}`),
             },
             {
                 path: 'my parcels',
