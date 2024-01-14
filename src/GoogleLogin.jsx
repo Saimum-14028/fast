@@ -20,10 +20,17 @@ const GoogleLogin = () => {
 
                 const email = res.user?.email;
                 const name = res.user?.displayName;
+                const number = "";
                 const image = res.user?.photoURL;
                 const createdAt = res.user?.metadata?.creationTime;
                 const role = "User";
-                const user = {email,name,image,role,createdAt};
+                const numberOfParcelDelivered = 0;
+                const totalReview = 0;
+                const numberofParcelBooked = 0;
+                const totalSpent = 0;
+                const numberOfRating = 0;
+
+                const user = {email,name,number,image,role,createdAt,numberOfParcelDelivered,totalReview,numberofParcelBooked,totalSpent,numberOfRating};
                 // send data to the server
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
