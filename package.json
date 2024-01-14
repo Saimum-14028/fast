@@ -30,7 +30,8 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.21.1",
     "sort-by": "^0.0.2",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.10.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

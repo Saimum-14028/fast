@@ -37,11 +37,11 @@ const UpdateParcel = () => {
 
     const singleData = useLoaderData();
   
-    console.log(singleData);
+ //   console.log(singleData);
 
     const { _id, name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, prevCost, delivery_address, prevRequestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id, payment_status } = singleData;
 
-    console.log(singleData.cost);
+  //  console.log(singleData.cost);
 
     const [cost, setCost] = useState(singleData.cost);
 
@@ -91,7 +91,7 @@ const UpdateParcel = () => {
 
         const newParcel = { name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, cost, delivery_address, requestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id, payment_status };
 
-        console.log(newParcel);
+     //   console.log(newParcel);
 
         // Update data to the server
 
