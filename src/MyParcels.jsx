@@ -18,14 +18,14 @@ const MyParcels = () => {
             .then(data => setCart(data))
     }, [user.email],);
 
-    console.log(cart);
+ //   console.log(cart);
 
     const handleSearch = event => {
         event.preventDefault();
 
         const status = event.target.role.value;
 
-        console.log(status);
+    //    console.log(status);
 
         if (loading) 
         return <Loading></Loading>
@@ -40,7 +40,7 @@ const MyParcels = () => {
         }
 
     const handleCancel = _id => {
-        console.log(_id);
+   //     console.log(_id);
 
         swal({
             title: 'Are you sure?',
@@ -53,7 +53,7 @@ const MyParcels = () => {
                 const newParcel = cart.find(car => car._id === _id);
                 newParcel.status = "Cancelled";
 
-                console.log(newParcel.status);
+       //         console.log(newParcel.status);
 
                 fetch(`http://localhost:5000/parcels/${_id}`, {
                 method: "PUT",
