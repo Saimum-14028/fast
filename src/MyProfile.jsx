@@ -11,7 +11,7 @@ const image_key = import.meta.env.VITE_image_hosting_key;
 const image_api = `https://api.imgbb.com/1/upload?key=${image_key}`;
 
 const MyProfile = () => {
-    const { user, loading} = useContext(AuthContext);
+    const { user, loading, handleUpdateProfile} = useContext(AuthContext);
     const [cart, setCart] = useState([]);
 
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const MyProfile = () => {
             .then(data => setCart(data))
     }, [user.email],);
 
-    console.log(cart);
+  //  console.log(cart);
 
     const UpdateImage = async (event) => {
         event.preventDefault();
@@ -35,6 +35,11 @@ const MyProfile = () => {
         const image = imageData?.data?.display_url;
 
         cart.image = image;
+
+        await handleUpdateProfile(cart.name, image)
+                .then(() => {
+                    toast.success('User Updated successfully');
+                })
 
         await fetch(`http://localhost:5000/users/${user?.email}`, {
                 method: "PUT",

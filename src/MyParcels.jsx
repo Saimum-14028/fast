@@ -12,6 +12,9 @@ const MyParcels = () => {
     const [cart, setCart] = useState([]);
     const navigate = useNavigate();
 
+    if (loading) 
+        return <Loading></Loading>
+
     useEffect(() => {
         fetch(`http://localhost:5000/parcels?email=${user.email}`)
             .then(res => res.json())
@@ -26,11 +29,10 @@ const MyParcels = () => {
         const status = event.target.role.value;
 
     //    console.log(status);
-
-        if (loading) 
-        return <Loading></Loading>
+    if (loading) 
+    return <Loading></Loading>
         
-        fetch(`http://localhost:5000/parcels?email=${user.email}&&status=${status}`)
+        fetch(`http://localhost:5000/parcels?email=${user.email}&status=${status}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -95,7 +97,7 @@ const MyParcels = () => {
                     <select id="role" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option value="">All</option>
                         <option value="Pending">Pending</option>
-                        <option value="On the way">On the way</option>
+                        <option value="On The Way">On The Way</option>
                         <option value="Delivered">Delivered</option>
                         <option value="Returned">Returned</option>
                         <option value="Cancelled">Cancelled</option>
