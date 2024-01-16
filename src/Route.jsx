@@ -118,8 +118,8 @@ const myCreatedRoute =  createBrowserRouter([
                   <PrivateRoute><DeliveryMenRoute><MyReviews></MyReviews></DeliveryMenRoute></PrivateRoute>
                 ),
             },
-        ]
-    }
+          ]
+      }
 ])
 
 export default myCreatedRoute;

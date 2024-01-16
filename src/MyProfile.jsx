@@ -37,44 +37,42 @@ const MyProfile = () => {
         cart.image = image;
 
         await handleUpdateProfile(cart.name, image)
-                .then(() => {
-                    toast.success('User Updated successfully');
-                })
+            .then(() => {
+            toast.success('User Updated successfully');
+        })
 
         await fetch(`http://localhost:5000/users/${user?.email}`, {
-                method: "PUT",
-              //  mode: 'no-cors',
-                headers: {
-                    'content-type': 'application/json'
-                  //  'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify(cart)
-                })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                    if(data.modifiedCount || data.upsertedCount){
-                        swal(
-                            'Updated!',
-                            'Profile Picture Updated.',
-                            'success'
-                        )
-                        navigate('/dashboard/my profile');
-                    }
-                    else{
-                        toast.error('Something is Wrong! Please Try Again Later');
-                    }
+            method: "PUT",
+            //  mode: 'no-cors',
+            headers: {
+                'content-type': 'application/json'
+                //  'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(cart)
+            })
+            .then((res) => res.json())
+            .then((data) => {           
+                console.log(data);
+                if(data.modifiedCount || data.upsertedCount){
+                    swal(
+                        'Updated!',
+                        'Profile Picture Updated.',
+                        'success'
+                    )
+                    navigate('/dashboard/my profile');
+                }
+                else{
+                    toast.error('Something is Wrong! Please Try Again Later');
+                }
             });
-    }
+        }
 
     return (
         <div>
             <Helmet>
                 <title>Fast | My Profile</title>
             </Helmet>
-
             <div className="w-full my-10">
-               
                 <div className="flex flex-col items-center pb-10">
                     <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={cart.image} alt={cart.name}/>
                     <h5 className="mb-1 text-xl font-medium">{cart.name}</h5>
@@ -89,7 +87,6 @@ const MyProfile = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };

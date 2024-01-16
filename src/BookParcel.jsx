@@ -30,8 +30,6 @@ const BookParcel = () => {
             })
     }, [user.email]);
 
-    
-
     const handleBookParcel = event => {
         event.preventDefault();
 
@@ -96,39 +94,41 @@ const BookParcel = () => {
             },
             body: JSON.stringify(newParcel)
         })
-            .then(res => res.json())
-            .then(data => {
-                //  console.log(data);
-                if (data.insertedId) {
-                    swal("Done!", "Parcel Booked Successfully!", "success");
-                    // navigate('/my added items');
-                   //   console.log(data);
-                   // console.log(userData);
+        .then(res => res.json())
+        .then(data => {
+            //  console.log(data);
+            if (data.insertedId) {
+                swal("Done!", "Parcel Booked Successfully!", "success");
+                // navigate('/my added items');
+                //   console.log(data);
+                // console.log(userData);
 
-                    userData.number = number;
-                    userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked) + 1;
-                    userData.totalSpent = parseInt(userData.totalSpent) + cost;
+                userData.number = number;
+                userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked) + 1;
+                userData.totalSpent = parseInt(userData.totalSpent) + cost;
 
-                //  console.log(userData);
+            //  console.log(userData);
 
-                    fetch(`http://localhost:5000/users/${user?.email}`, {
-                            method: "PUT",
-                        //  mode: 'no-cors',
-                            headers: {
-                                'content-type': 'application/json'
-                            //  'Access-Control-Allow-Origin': '*',
-                            },
-                            body: JSON.stringify(userData)
-                            })
-                            .then((res) => res.json())
-                            .then((data) => {
-                            // console.log(data);
-                            toast.success("Updated Successfully")
-                                navigate('/dashboard/my parcels');
-                        });
-                }
-            })
-
+                fetch(`http://localhost:5000/users/${user?.email}`, {
+                    method: "PUT",
+                //  mode: 'no-cors',
+                    headers: {
+                        'content-type': 'application/json'
+                    //  'Access-Control-Allow-Origin': '*',
+                    },
+                    body: JSON.stringify(userData)
+                    })
+                    .then((res) => res.json())
+                    .then((data) => {
+                    // console.log(data);
+                    toast.success("Updated Successfully");
+                    navigate('/dashboard/my parcels');
+                });
+            }
+            else{
+                toast.error("Something Wrong! Please Try Later")
+            }
+        })
     }
 
     return (

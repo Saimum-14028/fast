@@ -48,7 +48,6 @@ const MyDeliveryList = () => {
             buttons: ["Cancel", "Do it!"],
         }).then((result) => {
             if (result) {
-
                 const newParcel = cart.find(car => car._id === _id);
                 newParcel.status = "Delivered";
 
@@ -75,9 +74,6 @@ const MyDeliveryList = () => {
 
                         target.numberOfParcelDelivered = parseInt(target.numberOfParcelDelivered) + 1;
 
-  //     console.log(target);
-
-
                         fetch(`http://localhost:5000/users/${user?.email}`, {
                             method: "PUT",
                         //  mode: 'no-cors',
@@ -103,7 +99,6 @@ const MyDeliveryList = () => {
                         toast.error('Something is Wrong! Please Try Again Later');
                     }
                 });
-
             }
         })
         
@@ -111,7 +106,6 @@ const MyDeliveryList = () => {
 
   const handleCancel = _id => {
          console.log(_id);
- 
          swal({
              title: 'Are you sure?',
              text: "You won't be able to revert this!",
@@ -149,7 +143,6 @@ const MyDeliveryList = () => {
                          toast.error('Something is Wrong! Please Try Again Later');
                      }
                  });
- 
              }
          })
      }
@@ -202,7 +195,7 @@ const MyDeliveryList = () => {
                                         }
                                     </td>
                                 </tr>
-                                )) 
+                            )) 
                         }
                         </tbody> 
                     </table>

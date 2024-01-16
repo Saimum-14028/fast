@@ -49,7 +49,8 @@ const Navbar = () => {
                 {/* <Link to="/login"><button className="btn text-lg">Login</button></Link> */}
                 <div className="navbar-end">
                     {
-                        user?.email ? <div className="dropdown dropdown-end">
+                        user?.email ? 
+                        <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img src={user.photoURL} alt={user.displayName} />
@@ -78,11 +79,10 @@ const Navbar = () => {
                                     >Logout</button>
                                 </li>
                             </ul>
-                        </div>
-                            :
-                            <Link to='/login'>
-                                <button className="btn btn-sm  btn-ghost">Login</button>
-                            </Link>
+                        </div> :
+                        <Link to='/login'>
+                            <button className="btn btn-sm  btn-ghost">Login</button>
+                        </Link>
                     }
                 </div>
                 {/* </div> */}

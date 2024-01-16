@@ -1,10 +1,19 @@
-import React from 'react';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import CountUp from 'react-countup';
+import { AuthContext } from './AuthProvider';
+import React, { useContext } from 'react';
+import Loading from './Loading';
+
 
 const Features = () => {
+
+    const { userCount, bookedCount, deliveredCount, loading} = useContext(AuthContext);
+
+    if (loading) 
+        return <Loading></Loading>
+
     return (
         <div className='w-11/12 mx-auto my-5'>
             
@@ -78,7 +87,7 @@ const Features = () => {
                     <div className="relative flex items-center gap-4 pt-0 pb-8 mx-0 mt-4 overflow-hidden shadow-none rounded-xl bg-clip-border">
                         <div className="flex w-full flex-col gap-0.5">
                             <h5 className="block text-xl font-semibold text-center">
-                            Number of Parcel Booked: <span className='text-green-500'><CountUp end={1000}></CountUp></span>
+                            Number of Parcel Booked: <span className='text-green-500'><CountUp end={bookedCount}></CountUp></span>
                             </h5>
                         </div>
                     </div>
@@ -87,7 +96,7 @@ const Features = () => {
                     <div className="relative flex items-center gap-4 pt-0 pb-8 mx-0 mt-4 overflow-hidden shadow-none rounded-xl bg-clip-border">
                         <div className="flex w-full flex-col gap-0.5">
                             <h5 className="block text-xl font-semibold text-center">
-                            Number of Parcel Delivered: <span className='text-green-500'><CountUp end={1000}></CountUp></span>
+                            Number of Parcel Delivered: <span className='text-green-500'><CountUp end={deliveredCount}></CountUp></span>
                             </h5>
                         </div>
                     </div>
@@ -96,7 +105,7 @@ const Features = () => {
                     <div className="relative flex items-center gap-4 pt-0 pb-8 mx-0 mt-4 overflow-hidden shadow-none rounded-xl bg-clip-border">
                         <div className="flex w-full flex-col gap-0.5">
                             <h5 className="block text-xl font-semibold text-center">
-                            Number of Users: <span className='text-green-500'><CountUp end={1000}></CountUp></span>
+                            Number of Users: <span className='text-green-500'><CountUp end={userCount}></CountUp></span>
                             </h5>
                         </div>
                     </div>

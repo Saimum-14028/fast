@@ -44,39 +44,38 @@ const MyReviews = () => {
                             <div key={index}>
                                 {/* <!--First Testimonial--> */}
                                 <div className="mb-6 py-2 md:mb-0 bg-base-200">
-                                <div className="avatar">
-                                    <div className="w-24 rounded-full">
-                                        <img src={card.reviewer_image} alt={card.reviewer_name}/>
+                                    <div className="avatar">
+                                        <div className="w-24 rounded-full">
+                                            <img src={card.reviewer_image} alt={card.reviewer_name}/>
+                                        </div>
+                                    </div>
+                                    <p className="italic">{card.reviewer_name}</p>
+                                    <p >{card.feedback_date}</p>
+                                    
+                                    <p className="my-4 text-xl">
+                                        {card.feedback}
+                                    </p>
+                                    <div className="rating">
+                                        {card.rating > 0 ?
+                                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
+                                        }
+                                        {card.rating > 1 ?
+                                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
+                                        }
+                                        {card.rating > 2 ?
+                                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
+                                        }
+                                        {card.rating > 3 ?
+                                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
+                                        }
+                                        {card.rating > 4 ?
+                                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
+                                        }
                                     </div>
                                 </div>
-                                <p className="italic">{card.reviewer_name}</p>
-                                <p >{card.feedback_date}</p>
-                                
-                                <p className="my-4 text-xl">
-                                    {card.feedback}
-                                </p>
-                                <div className="rating">
-                                    {card.rating > 0 ?
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
-                                    }
-                                    {card.rating > 1 ?
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
-                                    }
-                                    {card.rating > 2 ?
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
-                                    }
-                                    {card.rating > 3 ?
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
-                                    }
-                                    {card.rating > 4 ?
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
-                                    }
-                                </div>
-                                
-                                </div>
                             </div>
-                            )) 
-                        }
+                        )) 
+                    }
                 </div> :
                 <motion.div animate={{
                     scale: [1, 2, 2, 1, 1],

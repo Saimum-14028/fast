@@ -95,51 +95,48 @@ const UpdateParcel = () => {
 
         // Update data to the server
 
-            fetch(`http://localhost:5000/parcels/${singleData._id}`, {
-                method: "PUT",
-              //  mode: 'no-cors',
-                headers: {
-                    'content-type': 'application/json'
-                  //  'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify(newParcel)
-                })
-                .then((res) => res.json())
-                .then((data) => {
-                  //  console.log(data);
-                    if(data.modifiedCount || data.upsertedCount){
-                        swal("Done!", "Percel Updated Successfully!", "success");
-                        //navigate('/my added items');
-                        userData.number = number;
-        userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked);
-        userData.totalSpent = parseInt(userData.totalSpent) + parseInt(cost) - parseInt(singleData.cost);
+        fetch(`http://localhost:5000/parcels/${singleData._id}`, {
+            method: "PUT",
+            //  mode: 'no-cors',
+            headers: {
+                'content-type': 'application/json'
+                //  'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(newParcel)
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                //  console.log(data);
+                if(data.modifiedCount || data.upsertedCount){
+                    swal("Done!", "Percel Updated Successfully!", "success");
+                    //navigate('/my added items');
+                    userData.number = number;
+                    userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked);
+                    userData.totalSpent = parseInt(userData.totalSpent) + parseInt(cost) - parseInt(singleData.cost);
 
-      //  console.log(userData);
+                    //  console.log(userData);
 
-        fetch(`http://localhost:5000/users/${user?.email}`, {
-                method: "PUT",
-              //  mode: 'no-cors',
-                headers: {
-                    'content-type': 'application/json'
-                  //  'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify(userData)
-                })
-                .then((res) => res.json())
-                .then((data) => {
-                   // console.log(data);
-                    navigate('/dashboard/my parcels');
+                    fetch(`http://localhost:5000/users/${user?.email}`, {
+                        method: "PUT",
+                    //  mode: 'no-cors',
+                        headers: {
+                            'content-type': 'application/json'
+                        //  'Access-Control-Allow-Origin': '*',
+                        },
+                        body: JSON.stringify(userData)
+                        })
+                        .then((res) => res.json())
+                        .then((data) => {
+                        // console.log(data);
+                        navigate('/dashboard/my parcels');
+                    });
+                }
+                else{
+                    toast.error('Data is same. Please Update');
+                }
             });
-                    }
-                    else{
-                        toast.error('Data is same. Please Update');
-                    }
-            });
-
-            // console.log(userData);
-
+        }
         
-    }
     return (
         <div>
             <Helmet>

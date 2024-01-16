@@ -89,14 +89,14 @@ const AllParcels = () => {
         if (loading) 
         return <Loading></Loading>
             
-            fetch(`http://localhost:5000/parcels?startDate=${startDate}&endDate=${endDate}`)
-                .then(res => res.json())
-                .then(data => {
-                    // console.log(data);
-                    setCart(data);
-                    //  console.log(userData);
-                })
-            }
+        fetch(`http://localhost:5000/parcels?startDate=${startDate}&endDate=${endDate}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setCart(data);
+                //  console.log(userData);
+            })
+        }
 
     return (
         <div>

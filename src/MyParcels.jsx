@@ -32,9 +32,8 @@ const MyParcels = () => {
 
         const status = event.target.role.value;
 
-    //    console.log(status);
-    if (loading) 
-    return <Loading></Loading>
+        if (loading) 
+        return <Loading></Loading>
         
         fetch(`http://localhost:5000/parcels?email=${user.email}&status=${status}`)
             .then(res => res.json())
@@ -43,7 +42,7 @@ const MyParcels = () => {
                 setCart(data);
                 //  console.log(userData);
             })
-        }
+    }
 
     const handleCancel = _id => {
    //     console.log(_id);
@@ -55,11 +54,8 @@ const MyParcels = () => {
             buttons: ["Cancel", "Do it!"],
         }).then((result) => {
             if (result) {
-
                 const newParcel = cart.find(car => car._id === _id);
                 newParcel.status = "Cancelled";
-
-       //         console.log(newParcel.status);
 
                 fetch(`http://localhost:5000/parcels/${_id}`, {
                 method: "PUT",
@@ -85,7 +81,6 @@ const MyParcels = () => {
                         toast.error('Something is Wrong! Please Try Again Later');
                     }
                 });
-
             }
         })
     }
@@ -109,13 +104,13 @@ const MyParcels = () => {
 
   //  console.log(deliveryMan);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${deliveryMan?.delivery_men_email}`)
-        .then(res => res.json())
-        .then(data => setNewUser(data))
-}, [deliveryMan?.delivery_men_email],);
+    useEffect(() => {
+        fetch(`http://localhost:5000/users?email=${deliveryMan?.delivery_men_email}`)
+            .then(res => res.json())
+            .then(data => setNewUser(data))
+    }, [deliveryMan?.delivery_men_email],);
 
- //   console.log(newUser);
+    //   console.log(newUser);
 
     const handleSubmit = event => {
        // event.preventDefault();
@@ -141,7 +136,7 @@ const MyParcels = () => {
                 //'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(target)
-        })
+            })
             .then(res => res.json())
             .then(data => {
                 //  console.log(data);
@@ -150,40 +145,35 @@ const MyParcels = () => {
                    //  navigate('/my parcels');
                    //   console.log(data);
                    newUser[0].totalReview = parseInt(newUser[0].totalReview) + parseInt(rating);
-        newUser[0].numberOfRating = parseInt(newUser[0].numberOfRating) + 1;
+                    newUser[0].numberOfRating = parseInt(newUser[0].numberOfRating) + 1;
 
-    //    console.log(newUser[0]?.email);
+                    //    console.log(newUser[0]?.email);
 
-        fetch(`http://localhost:5000/users/${newUser[0]?.email}`, {
-                method: "PUT",
-              //  mode: 'no-cors',
-                headers: {
-                    'content-type': 'application/json'
-                  //  'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify(newUser[0])
-                })
-                .then((res) => res.json())
-                .then((data) => {
-                  //  console.log(data);
-                    if(data.modifiedCount || data.upsertedCount){
-                        toast.success('Updated Successfully');
-                        navigate('/dashboard/my parcels');
-                    }
-                    else{
-                        toast.error('Something is Wrong! Please Try Again Later');
-                    }
-        });
+                    fetch(`http://localhost:5000/users/${newUser[0]?.email}`, {
+                        method: "PUT",
+                    //  mode: 'no-cors',
+                        headers: {
+                            'content-type': 'application/json'
+                        //  'Access-Control-Allow-Origin': '*',
+                        },
+                        body: JSON.stringify(newUser[0])
+                        })
+                        .then((res) => res.json())
+                        .then((data) => {
+                        //  console.log(data);
+                            if(data.modifiedCount || data.upsertedCount){
+                                toast.success('Updated Successfully');
+                                navigate('/dashboard/my parcels');
+                            }
+                            else{
+                                toast.error('Something is Wrong! Please Try Again Later');
+                            }
+                    });
                 }
                 else{
                     toast.error('Something is Wrong! Please Try Again Later');
-                }
-       //         console.log(newUser[0]?.email);
-
-        
-        })
-
-        
+            }
+        })  
     }
 
     return (
@@ -258,21 +248,21 @@ const MyParcels = () => {
                                     <button className="btn btn-sm bg-green-500 text-white" onClick={()=>{document.getElementById('my_modal_4').showModal();handleReview(card._id)}}>Review
                                     </button>
                                     <dialog id="my_modal_4" className="modal">
-                                    <div className="modal-box w-11/12 md:w-1/2 lg:w-1/4 max-w-5xl">
+                                        <div className="modal-box w-11/12 md:w-1/2 lg:w-1/4 max-w-5xl">
 
                                         <form onSubmit={handleSubmit} action="#">
-                                        <div className="w-full">
-                                <label htmlFor="name" className="block mb-2 text-sm font-medium ">User's Name</label>
-                                <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your Name" defaultValue={user.displayName} readOnly required></input>
-                            </div>
-                            <div className="w-full">
-                                <label htmlFor="image" className="block mb-2 text-sm font-medium ">User's Image</label>
-                                <input type="text" name="image" id="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your image" defaultValue={user.photoURL} readOnly required></input>
-                            </div>
-                            <div className="w-full">
-                                <label htmlFor="id" className="block mb-2 text-sm font-medium ">DeliveryMen Id</label>
-                                <p className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" >{deliveryMan.delivery_men_id}</p>
-                                </div>
+                                            <div className="w-full">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium ">User's Name</label>
+                                                <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your Name" defaultValue={user.displayName} readOnly required></input>
+                                            </div>
+                                            <div className="w-full">
+                                                <label htmlFor="image" className="block mb-2 text-sm font-medium ">User's Image</label>
+                                                <input type="text" name="image" id="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your image" defaultValue={user.photoURL} readOnly required></input>
+                                            </div>
+                                            <div className="w-full">
+                                                <label htmlFor="id" className="block mb-2 text-sm font-medium ">DeliveryMen Id</label>
+                                                <p className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" >{deliveryMan.delivery_men_id}</p>
+                                            </div>
                                             <div className="w-full">
                                                 <label htmlFor="rating" className="block mb-2 text-sm font-medium">Select Rating</label>
                                                 <select id="rating" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
@@ -284,31 +274,26 @@ const MyParcels = () => {
                                                 </select>
                                             </div>
                                             <div className="w-full">
-                                <label htmlFor="feedback" className="block mb-2 text-sm font-medium ">Feedback</label>
-                                <textarea id="feedback" rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Here.." required></textarea>
-                            </div>
+                                                <label htmlFor="feedback" className="block mb-2 text-sm font-medium ">Feedback</label>
+                                                <textarea id="feedback" rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write Here.." required></textarea>
+                                            </div>
                                             {/* if there is a button, it will close the modal */}
-                                            
                                             <button type='submit' className="btn btn-sm bg-green-500 text-white">Submit</button>
                                         </form>
 
-                                        <div className="modal-action">
-                                        
+                                    <div className="modal-action">
                                         <form method="dialog">
                                             {/* if there is a button, it will close the modal */}
                                             <button className="btn btn-sm bg-red-500 text-white">Close</button>
                                         </form>
-                                        </div>
                                     </div>
-                                    </dialog>
                                     </div>
-                                    : ""
-                                    }
-                                    
+                                </dialog>
+                                </div>: ""}
                                 </td>
                             </tr>
                             )) 
-                        }
+                            }
                         </tbody> 
                     </table>
                     </div>

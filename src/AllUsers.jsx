@@ -12,6 +12,7 @@ const AllUsers = () => {
     const navigate = useNavigate();
     const query = "User";
     const [count, setCount] = useState(0)
+    const role = "User";
 
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -27,7 +28,7 @@ const AllUsers = () => {
         return <Loading></Loading>
 
     useEffect( () =>{
-        fetch('http://localhost:5000/userCount')
+        fetch(`http://localhost:5000/userCount?role=${role}`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);
@@ -35,7 +36,7 @@ const AllUsers = () => {
         })
     }, [])
 
-  //  console.log(count);
+    console.log(count);
 
     useEffect(() => {
          fetch(`http://localhost:5000/users?role=${query}&page=${currentPage}&size=${itemsPerPage}`)
@@ -62,98 +63,98 @@ const AllUsers = () => {
     const makeAdmin = _id => {
            //  console.log(_id);
      
-             swal({
-                 title: 'Are you sure?',
-                 text: "You won't be able to revert this!",
-                 icon: 'warning',
-                 buttons: ["Cancel", "Do it!"],
-             }).then((result) => {
-                 if (result) {
-     
-                     const targetUser = cart.find(car => car._id === _id);
-                     targetUser.role = "Admin";
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ["Cancel", "Do it!"],
+        }).then((result) => {
+            if (result) {
 
-                  //   console.log(targetUser.email);
-     
-                     fetch(`http://localhost:5000/users/${targetUser.email}`, {
-                     method: "PUT",
-                   //  mode: 'no-cors',
-                     headers: {
-                         'content-type': 'application/json'
-                       //  'Access-Control-Allow-Origin': '*',
-                     },
-                     body: JSON.stringify(targetUser)
-                     })
-                     .then((res) => res.json())
-                     .then((data) => {
-                       //  console.log(data);
-                         if(data.modifiedCount || data.upsertedCount){
-                             swal(
-                                 'Done!',
-                                 `${targetUser.name} is now Admin`,
-                                 'success'
-                             )
-                             navigate('/dashboard/all admins');
-                            //   const update = cart.filter(car => car._id !== _id);
-                            //   setCart(update);
-                         }
-                         else{
-                             toast.error('Something is Wrong! Please Try Again Later');
-                         }
-                     });
-     
-                 }
-             })
-         }
+                const targetUser = cart.find(car => car._id === _id);
+                targetUser.role = "Admin";
 
-         const makeDeliveryMen = _id => {
-         //   console.log(_id);
-    
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                buttons: ["Cancel", "Do it!"],
-            }).then((result) => {
-                if (result) {
-    
-                    const targetUser = cart.find(car => car._id === _id);
-                    targetUser.role = "Delivery Men";
+            //   console.log(targetUser.email);
 
-               //     console.log(targetUser.email);
-    
-                    fetch(`http://localhost:5000/users/${targetUser.email}`, {
-                    method: "PUT",
-                  //  mode: 'no-cors',
-                    headers: {
-                        'content-type': 'application/json'
-                      //  'Access-Control-Allow-Origin': '*',
-                    },
-                    body: JSON.stringify(targetUser)
-                    })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      //  console.log(data);
-                        if(data.modifiedCount || data.upsertedCount){
-                            swal(
-                                'Done!',
-                                `${targetUser.name} is now DeliveryMen`,
-                                'success'
-                            )
-                            navigate('/dashboard/all delivery men');
-                            //  const update = cart.filter(car => car._id !== _id);
-                            //  setCart(update);
-                            // // setCount(count-1);
-                            // // console.log(count);
-                        }
-                        else{
-                            toast.error('Something is Wrong! Please Try Again Later');
-                        }
-                    });
-    
-                }
-            })
-        }
+                fetch(`http://localhost:5000/users/${targetUser.email}`, {
+                method: "PUT",
+            //  mode: 'no-cors',
+                headers: {
+                    'content-type': 'application/json'
+                //  'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify(targetUser)
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                //  console.log(data);
+                    if(data.modifiedCount || data.upsertedCount){
+                        swal(
+                            'Done!',
+                            `${targetUser.name} is now Admin`,
+                            'success'
+                        )
+                        navigate('/dashboard/all admins');
+                    //   const update = cart.filter(car => car._id !== _id);
+                    //   setCart(update);
+                    }
+                    else{
+                        toast.error('Something is Wrong! Please Try Again Later');
+                    }
+                });
+
+            }
+        })
+    }
+
+    const makeDeliveryMen = _id => {
+        //   console.log(_id);
+
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ["Cancel", "Do it!"],
+        }).then((result) => {
+            if (result) {
+
+                const targetUser = cart.find(car => car._id === _id);
+                targetUser.role = "Delivery Men";
+
+            //     console.log(targetUser.email);
+
+                fetch(`http://localhost:5000/users/${targetUser.email}`, {
+                method: "PUT",
+                //  mode: 'no-cors',
+                headers: {
+                    'content-type': 'application/json'
+                    //  'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify(targetUser)
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    //  console.log(data);
+                    if(data.modifiedCount || data.upsertedCount){
+                        swal(
+                            'Done!',
+                            `${targetUser.name} is now DeliveryMen`,
+                            'success'
+                        )
+                        navigate('/dashboard/all delivery men');
+                        //  const update = cart.filter(car => car._id !== _id);
+                        //  setCart(update);
+                        // // setCount(count-1);
+                        // // console.log(count);
+                    }
+                    else{
+                        toast.error('Something is Wrong! Please Try Again Later');
+                    }
+                });
+
+            }
+        })
+    }
 
     return (
         <div>
@@ -180,7 +181,7 @@ const AllUsers = () => {
                         {
                             cart.map((card,index) => (
                                 <tr key={index}>
-                                    <th>{index+1}.</th> 
+                                    <th>{currentPage*5 + index+1}.</th> 
                                     <td>{card.name}</td> 
                                     <td>{card.number}</td> 
                                     <td>{card.numberofParcelBooked}</td>
