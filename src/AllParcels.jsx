@@ -57,10 +57,12 @@ const AllParcels = () => {
         const form = event.target;
 
         target.delivery_men_id = form.deliveryMen.value;
+        const temp = deliveryMen.find(car => car._id === target.delivery_men_id);
+        target.delivery_men_email = temp.email;
         target.approximate_delivery_date = approximate_delivery_date;
         target.status = "On The Way";
 
-      //  console.log(target);
+        console.log(target);
 
         fetch(`http://localhost:5000/parcels/${target._id}`, {
                 method: "PUT",

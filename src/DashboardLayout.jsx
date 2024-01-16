@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Helmet } from 'react-helmet-async'
+import { Toaster } from 'react-hot-toast'
 
 const DashboardLayout = () => {
   return (
@@ -18,6 +19,7 @@ const DashboardLayout = () => {
                 </div>
             </div>
         </div>
+        <Toaster></Toaster>
     </>
   )
 }
