@@ -19,6 +19,7 @@ import DeliveryMenRoute from "./DeliveryMenRoute";
 import MyDeliveryList from "./MyDeliveryList";
 import MyReviews from "./MyReviews";
 import UpdateParcel from "./UpdateParcel";
+import AllAdmins from "./AllAdmins";
 
 const myCreatedRoute =  createBrowserRouter([
     {
@@ -52,6 +53,12 @@ const myCreatedRoute =  createBrowserRouter([
                 index: true,
                 element: (
                   <PrivateRoute><AdminRoute><Statistics></Statistics></AdminRoute></PrivateRoute>
+                ),
+            },
+            {
+              path: 'all admins',
+                element: (
+                  <PrivateRoute><AdminRoute><AllAdmins></AllAdmins></AdminRoute></PrivateRoute>
                 ),
             },
             {

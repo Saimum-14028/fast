@@ -4,10 +4,10 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion"
 import Loading from './Loading';
 
-const AllDeliveryMen = () => {
+const AllAdmins = () => {
     const { user, loading} = useContext(AuthContext);
     const [cart, setCart] = useState([]);
-    const query = "Delivery Men";
+    const query = "Admin";
 
     if (loading) 
         return <Loading></Loading>
@@ -20,12 +20,12 @@ const AllDeliveryMen = () => {
                 setCart(data);
              //   console.log(cart);
             })
-    },[],);
+    },[]);
 
     return (
         <div>
             <Helmet>
-                <title>Fast | All Delivery Men</title>
+                <title>Fast | All Admins</title>
             </Helmet>
 
             {
@@ -36,10 +36,9 @@ const AllDeliveryMen = () => {
                         <thead>
                         <tr>
                             <th>SL.</th> 
-                            <th>Delivery<br />Man's Name</th> 
-                            <th>Phone<br></br>Number</th> 
-                            <th>Number of<br />Parcel Delivered</th> 
-                            <th>Average<br />Review</th> 
+                            <th>Admin<br />Name</th> 
+                            <th>Email</th> 
+                            <th>Phone<br></br>Number</th>  
                         </tr>
                         </thead> 
                         <tbody>
@@ -48,9 +47,8 @@ const AllDeliveryMen = () => {
                                 <tr key={index}>
                                     <th>{index+1}.</th> 
                                     <td>{card.name}</td> 
+                                    <td>{card.email}</td>
                                     <td>{card.number}</td> 
-                                    <td>{card.numberOfParcelDelivered}</td>
-                                    <td>{card.numberOfRating == 0 ? 0 : parseFloat(card.totalReview)/parseFloat(card.numberOfRating)}</td>
                                 </tr>
                                 )) 
                         }
@@ -63,11 +61,11 @@ const AllDeliveryMen = () => {
                     rotate: [0, 0, 270, 270, 0],
                     borderRadius: ["20%", "20%", "50%", "50%", "20%"],
                   }}>
-                    <h1 className="text-5xl font-bold mt-5 text-center">No Delivery Men Found!</h1>
+                    <h1 className="text-5xl font-bold mt-5 text-center">No Admin Found!</h1>
                 </motion.div>
             }
         </div>
     );
 };
 
-export default AllDeliveryMen;
+export default AllAdmins;
