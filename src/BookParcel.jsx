@@ -103,32 +103,31 @@ const BookParcel = () => {
                     swal("Done!", "Parcel Booked Successfully!", "success");
                     // navigate('/my added items');
                    //   console.log(data);
+                   // console.log(userData);
+
+                    userData.number = number;
+                    userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked) + 1;
+                    userData.totalSpent = parseInt(userData.totalSpent) + cost;
+
+                //  console.log(userData);
+
+                    fetch(`http://localhost:5000/users/${user?.email}`, {
+                            method: "PUT",
+                        //  mode: 'no-cors',
+                            headers: {
+                                'content-type': 'application/json'
+                            //  'Access-Control-Allow-Origin': '*',
+                            },
+                            body: JSON.stringify(userData)
+                            })
+                            .then((res) => res.json())
+                            .then((data) => {
+                            // console.log(data);
+                            toast.success("Updated Successfully")
+                                navigate('/dashboard/my parcels');
+                        });
                 }
             })
-
-
-       // console.log(userData);
-
-        userData.number = number;
-        userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked) + 1;
-        userData.totalSpent = parseInt(userData.totalSpent) + cost;
-
-      //  console.log(userData);
-
-        fetch(`http://localhost:5000/users/${user?.email}`, {
-                method: "PUT",
-              //  mode: 'no-cors',
-                headers: {
-                    'content-type': 'application/json'
-                  //  'Access-Control-Allow-Origin': '*',
-                },
-                body: JSON.stringify(userData)
-                })
-                .then((res) => res.json())
-                .then((data) => {
-                   // console.log(data);
-                    navigate('/dashboard/my parcels');
-            });
 
     }
 

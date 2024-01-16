@@ -110,15 +110,7 @@ const UpdateParcel = () => {
                     if(data.modifiedCount || data.upsertedCount){
                         swal("Done!", "Percel Updated Successfully!", "success");
                         //navigate('/my added items');
-                    }
-                    else{
-                        toast.error('Data is same. Please Update');
-                    }
-            });
-
-            // console.log(userData);
-
-        userData.number = number;
+                        userData.number = number;
         userData.numberofParcelBooked = parseInt(userData.numberofParcelBooked);
         userData.totalSpent = parseInt(userData.totalSpent) + parseInt(cost) - parseInt(singleData.cost);
 
@@ -138,6 +130,15 @@ const UpdateParcel = () => {
                    // console.log(data);
                     navigate('/dashboard/my parcels');
             });
+                    }
+                    else{
+                        toast.error('Data is same. Please Update');
+                    }
+            });
+
+            // console.log(userData);
+
+        
     }
     return (
         <div>

@@ -23,16 +23,23 @@ const MyDeliveryList = () => {
             .then(data => setTarget(data))
     }, [user.email],);
 
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/parcels?delivery_men_email=${user.email}`)
+    //         .then(res => res.json())
+    //         .then(data => setCart(data))
+    // }, [user.email],);
+
+    const id = target._id;
+   // console.log(id);
+
     useEffect(() => {
-        fetch(`http://localhost:5000/parcels?delivery_men_email=${user.email}`)
+        fetch(`http://localhost:5000/parcels?delivery_men_id=${id}`)
             .then(res => res.json())
             .then(data => setCart(data))
-    }, [user.email],);
-
-    console.log(target);
+    }, [id],);
 
     const handleDelivered = _id => {
-        console.log(_id);
+    //    console.log(_id);
 
         swal({
             title: 'Are you sure?',
@@ -65,7 +72,32 @@ const MyDeliveryList = () => {
                             'Your Parcel has Delivered.',
                             'success'
                         )
-                         navigate('/dashboard/my delivery list');
+
+                        target.numberOfParcelDelivered = parseInt(target.numberOfParcelDelivered) + 1;
+
+  //     console.log(target);
+
+
+                        fetch(`http://localhost:5000/users/${user?.email}`, {
+                            method: "PUT",
+                        //  mode: 'no-cors',
+                            headers: {
+                                'content-type': 'application/json'
+                            //  'Access-Control-Allow-Origin': '*',
+                            },
+                            body: JSON.stringify(target)
+                            })
+                            .then((res) => res.json())
+                            .then((data) => {
+                        //      console.log(data);
+                                if(data.modifiedCount || data.upsertedCount){
+                                    toast.success('Updated Successfully');
+                                    navigate('/dashboard/my delivery list');
+                                }
+                                else{
+                                    toast.error('Something is Wrong! Please Try Again Later');
+                                }
+                        });
                     }
                     else{
                         toast.error('Something is Wrong! Please Try Again Later');
@@ -74,34 +106,7 @@ const MyDeliveryList = () => {
 
             }
         })
-
-        target.numberOfParcelDelivered = parseInt(target.numberOfParcelDelivered) + 1;
-
-        console.log(target);
-
-
-        fetch(`http://localhost:5000/users/${user?.email}`, {
-            method: "PUT",
-          //  mode: 'no-cors',
-            headers: {
-                'content-type': 'application/json'
-              //  'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify(target)
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                if(data.modifiedCount || data.upsertedCount){
-                    toast.success('Updated Successfully');
-                    // navigate('/dashboard/my delivery list');
-                }
-                else{
-                    toast.error('Something is Wrong! Please Try Again Later');
-                }
-        });
         
-    
     }
 
   const handleCancel = _id => {
