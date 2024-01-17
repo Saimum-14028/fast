@@ -7,6 +7,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import swal from 'sweetalert';
 import toast from 'react-hot-toast';
+import ManageModal from './ManageModal';
 
 const AllParcels = () => {
     const { user, loading} = useContext(AuthContext);
@@ -17,6 +18,16 @@ const AllParcels = () => {
     const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     const query = "Delivery Men";
 
@@ -109,6 +120,9 @@ const AllParcels = () => {
                 <title>Fast | All Parcels</title>
             </Helmet>
 
+            {/* Render the modal component */}
+            <ManageModal isOpen={isModalOpen} onClose={closeModal} handleAssign={handleAssign} approximate_delivery_date={approximate_delivery_date} deliveryMen={deliveryMen}/>
+            
             <motion.div animate={{
                     scale: [1, 2, 2, 1, 1],
                     rotate: [0, 0, 270, 270, 0],
@@ -166,40 +180,8 @@ const AllParcels = () => {
                                 <td>{card.status}</td>
                                 <td>
                                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                                    <button className="btn btn-sm bg-green-500 text-white" onClick={()=>{document.getElementById('my_modal_4').showModal();handleManage(card._id)}}>Manage</button>
-                                    <dialog id="my_modal_4" className="modal">
-                                    <div className="modal-box w-11/12 md:w-1/3 lg:w-1/4 max-w-5xl">
-
-                                        <form onSubmit={handleAssign} action="#">
-                                        <div className="w-full">
-                                                <label htmlFor="requested_delivery_date" className="block mb-2 text-sm font-medium ">Select Approximate Delivery Date</label>
-                                                <DatePicker className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" selected={approximate_delivery_date} onChange={(date) => setapproximate_delivery_date(date)} minDate={new Date()} dateFormat="dd-MM-yyyy" required/>
-                                            </div>
-                                            <div className="w-full">
-                                                <label htmlFor="deliveryMen" className="block mb-2 text-sm font-medium">Select DeliveryMen ID</label>
-                                                <select id="deliveryMen" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                                                    {
-                                                        deliveryMen.map((card) => (
-                                                            <option key={card._id} value={card._id}>{card._id}</option>
-                                                        ))
-                                                    }
-                                                    
-                                                </select>
-                                            </div>
-                                            {/* if there is a button, it will close the modal */}
-                                            
-                                            <button type='submit' className="btn btn-sm bg-green-500 text-white">Assign</button>
-                                        </form>
-
-                                        <div className="modal-action">
-                                        
-                                        <form method="dialog">
-                                            {/* if there is a button, it will close the modal */}
-                                            <button className="btn btn-sm bg-red-500 text-white">Close</button>
-                                        </form>
-                                        </div>
-                                    </div>
-                                    </dialog>
+                                    <button className="btn btn-sm bg-green-500 text-white" onClick={()=>{openModal();handleManage(card._id)}}>Manage</button>
+                                    
                                 </td>
                             </tr>
                             )) 
