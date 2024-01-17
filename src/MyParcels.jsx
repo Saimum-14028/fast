@@ -183,6 +183,14 @@ const MyParcels = () => {
                 <title>Fast | My Parcels</title>
             </Helmet>
 
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">My Parcels</h1>
+            </motion.div>
+
             <form onSubmit={handleSearch}>
                 <div className='flex gap-2 justify-center mb-5'>
                     <select id="role" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -242,7 +250,10 @@ const MyParcels = () => {
                                         
                                         <button onClick={() => handleCancel(card._id)} className='btn btn-sm bg-red-500 text-white'>Cancel</button>
                                     </div>
-                                    : ""
+                                    : 
+                                    <div>
+                                        <button className='btn btn-sm btn-disabled'>Update</button>
+                                    </div>
                                     }
                                     {card.status === "Delivered" ?
                                     <div>

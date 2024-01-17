@@ -162,6 +162,14 @@ const AllUsers = () => {
                 <title>Fast | All Users</title>
             </Helmet>
 
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">All Users</h1>
+            </motion.div>
+
             {
                 cart.length ? 
                 <div>
@@ -186,7 +194,7 @@ const AllUsers = () => {
                                     <td>{card.number}</td> 
                                     <td>{card.numberofParcelBooked}</td>
                                     <td>{card.totalSpent}</td>
-                                    <td><button onClick={() => makeAdmin(card._id)} className='btn btn-sm bg-green-500 text-white'>Make Admin</button>
+                                    <td><button onClick={() => makeAdmin(card._id)} className='btn btn-sm bg-blue-500 text-white'>Make Admin</button>
                                     <button onClick={() => makeDeliveryMen(card._id)} className='btn btn-sm bg-green-500 text-white'>Make DeliveryMen</button></td>
                                     
                                 </tr>

@@ -27,6 +27,13 @@ const AllDeliveryMen = () => {
             <Helmet>
                 <title>Fast | All Delivery Men</title>
             </Helmet>
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">All Delivery Men</h1>
+            </motion.div>
 
             {
                 cart.length ? 
@@ -50,7 +57,7 @@ const AllDeliveryMen = () => {
                                     <td>{card.name}</td> 
                                     <td>{card.number}</td> 
                                     <td>{card.numberOfParcelDelivered}</td>
-                                    <td>{card.numberOfRating == 0 ? 0 : parseFloat(card.totalReview)/parseFloat(card.numberOfRating)}</td>
+                                    <td>{card.averageRating?.toFixed(2)}</td>
                                 </tr>
                                 )) 
                         }

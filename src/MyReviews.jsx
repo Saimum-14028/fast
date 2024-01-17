@@ -36,6 +36,14 @@ const MyReviews = () => {
                 <title>Fast | My Reviews</title>
             </Helmet>
 
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">My Reviews</h1>
+            </motion.div>
+
             {
                 cart.length ? 
                 <div className="grid gap-12 text-center md:grid-cols-2">
@@ -51,10 +59,7 @@ const MyReviews = () => {
                                     </div>
                                     <p className="italic">{card.reviewer_name}</p>
                                     <p >{card.feedback_date}</p>
-                                    
-                                    <p className="my-4 text-xl">
-                                        {card.feedback}
-                                    </p>
+
                                     <div className="rating">
                                         {card.rating > 0 ?
                                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
@@ -72,6 +77,11 @@ const MyReviews = () => {
                                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />:""
                                         }
                                     </div>
+                                    
+                                    <p className="my-4 text-xl">
+                                        {card.feedback}
+                                    </p>
+                                    
                                 </div>
                             </div>
                         )) 

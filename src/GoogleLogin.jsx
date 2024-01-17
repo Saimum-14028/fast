@@ -66,7 +66,7 @@ const GoogleLogin = () => {
             <div className="form-control mt-6 p-0">
                 <button
                     onClick={() => handleGoogleLogin(googleLogin)}
-                    className="btn bg-green-600">Google
+                    className="btn bg-green-500 text-white">Google
                 </button>
             </div>
         </div>

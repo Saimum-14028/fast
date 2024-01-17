@@ -29,7 +29,7 @@ const NewsLetter = () => {
                                     <input className="block p-3 pl-10 w-full text-sm   rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 " placeholder="Enter your email" type="email" id="email" required></input>
                                 </div>
                                 <div>
-                                    <button type="submit" className="btn bg-green-600 py-3 px-5 w-full ">Subscribe</button>
+                                    <button type="submit" className="btn bg-green-500 text-white py-3 px-5 w-full ">Subscribe</button>
                                 </div>
                             </div>
                             <div className="mx-auto max-w-screen-sm text-sm text-left  newsletter-form-footer ">We care about the protection of your data. <a className="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a>.</div>

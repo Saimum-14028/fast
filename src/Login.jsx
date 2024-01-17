@@ -60,7 +60,7 @@ const Login = () => {
                                 <a className="text-sm font-medium text-primary-600 hover:underline text-gray-500 dark:text-gray-300">Forgot Password?</a>
                             </div>
                             <div className="form-control mt-6 p-0">
-                                            <button type='submit' className="btn bg-green-600">Login</button>
+                                            <button type='submit' className="btn bg-green-500 text-white">Login</button>
                             </div>
                             <p className="text-sm font-light text-red-500 dark:text-red-400">
                                 Don’t Have An Account Yet? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register</Link>

@@ -72,6 +72,13 @@ const MyProfile = () => {
             <Helmet>
                 <title>Fast | My Profile</title>
             </Helmet>
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">My Profile</h1>
+            </motion.div>
             <div className="w-full my-10">
                 <div className="flex flex-col items-center pb-10">
                     <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={cart.image} alt={cart.name}/>

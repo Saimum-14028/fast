@@ -197,7 +197,7 @@ const UpdateParcel = () => {
                             </div>
                         </div>
                         <div className="form-control mt-6 p-0">
-                            <button type='submit' className="btn bg-green-600">Update</button>
+                            <button type='submit' className="btn bg-green-500 text-white">Update Now</button>
                         </div>
                     </form>
                 </div>

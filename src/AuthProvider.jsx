@@ -15,6 +15,17 @@ const AuthProvider = ({ children }) => {
     const [userCount, setUserCount] = useState();
     const [bookedCount, setBookedCount] = useState();
     const [deliveredCount, setDeliveredCount] = useState();
+    const [target, setTarget] = useState();
+
+    useEffect( () =>{
+        fetch(`http://localhost:5000/bookingdate`)
+        .then(res => res.json())
+        .then(data => {
+       //     console.log(data.length);
+            setTarget(data)
+          //  setLoading(false);
+        })
+    }, [])
 
     useEffect( () =>{
         fetch(`http://localhost:5000/userCount`)
@@ -97,7 +108,8 @@ const AuthProvider = ({ children }) => {
         handleUpdateProfile,
         userCount,
         bookedCount,
-        deliveredCount
+        deliveredCount,
+        target
     }
 
     return (

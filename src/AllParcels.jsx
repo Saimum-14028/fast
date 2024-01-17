@@ -75,8 +75,13 @@ const AllParcels = () => {
                 })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
-                    navigate('/dashboard/all parcels')
+                    if(data.modifiedCount || data.upsertedCount){
+                        swal("Done!", "Delivery Men Assigned Successfully!", "success");
+                        navigate('/dashboard/all parcels');
+                    }
+                    else{
+                        toast.error('Something is Wrong! Please Try Again Later');
+                    }
                 });
         }
 
@@ -103,6 +108,14 @@ const AllParcels = () => {
             <Helmet>
                 <title>Fast | All Parcels</title>
             </Helmet>
+
+            <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 270, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
+                    <h1 className="text-3xl font-bold my-2 text-center">All Parcels</h1>
+            </motion.div>
 
             <div>
                 <form onSubmit={handleSearch}>
@@ -131,8 +144,8 @@ const AllParcels = () => {
                         <thead>
                         <tr>
                             <th>SL.</th> 
-                            <th>User’s<br />Name</th> 
-                            <th>User’s<br />Phone</th> 
+                            <th>User's<br />Name</th> 
+                            <th>User's<br />Phone</th> 
                             <th>Booking<br />Date</th> 
                             <th>Requested<br />Delivery<br />Date</th> 
                             <th>Cost</th>
