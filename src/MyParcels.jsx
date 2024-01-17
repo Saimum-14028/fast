@@ -113,7 +113,7 @@ const MyParcels = () => {
     //   console.log(newUser);
 
     const handleSubmit = event => {
-       // event.preventDefault();
+        event.preventDefault();
  
          const form = event.target;
 
@@ -146,8 +146,9 @@ const MyParcels = () => {
                    //   console.log(data);
                    newUser[0].totalReview = parseInt(newUser[0].totalReview) + parseInt(rating);
                     newUser[0].numberOfRating = parseInt(newUser[0].numberOfRating) + 1;
+                    newUser[0].averageRating = parseFloat(newUser[0].totalReview/newUser[0].numberOfRating);
 
-                    //    console.log(newUser[0]?.email);
+                    console.log(newUser[0]);
 
                     fetch(`http://localhost:5000/users/${newUser[0]?.email}`, {
                         method: "PUT",
@@ -193,7 +194,7 @@ const MyParcels = () => {
                         <option value="Cancelled">Cancelled</option>
                     </select>
                     <div className="form-control">
-                        <button type='submit' className="btn bg-green-600">Filter By Status</button>
+                        <button type='submit' className="btn bg-green-500 text-white">Filter By Status</button>
                     </div>
                 </div>
             </form>
@@ -236,7 +237,7 @@ const MyParcels = () => {
                                     {card.status === "Pending" ?
                                     <div>
                                         <Link to={`/dashboard/update a parcel/${card._id}`}>
-                                        <button className='btn btn-sm bg-green-500 text-white'>Update</button>
+                                        <button className='btn btn-sm bg-blue-500 text-white'>Update</button>
                                         </Link>
                                         
                                         <button onClick={() => handleCancel(card._id)} className='btn btn-sm bg-red-500 text-white'>Cancel</button>

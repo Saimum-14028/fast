@@ -52,7 +52,7 @@ const AllParcels = () => {
  //   console.log(target);
 
     const handleAssign = event => {
-       //  event.preventDefault();
+         event.preventDefault();
 
         const form = event.target;
 

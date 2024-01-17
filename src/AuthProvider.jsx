@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
         .then(data => {
        //     console.log(data.length);
             setUserCount(data.length)
-            setLoading(false);
+          //  setLoading(false);
         })
     }, [])
 
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
         .then(data => {
        //     console.log(data.length);
             setBookedCount(data.length)
-            setLoading(false);
+          //  setLoading(false);
         })
     }, [])
 
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
         .then(data => {
        //     console.log(data.length);
             setDeliveredCount(data.length)
-            setLoading(false);
+          //  setLoading(false);
         })
     }, [])
 

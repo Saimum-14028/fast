@@ -73,8 +73,9 @@ const Register = () => {
                 const numberofParcelBooked = 0;
                 const totalSpent = 0;
                 const numberOfRating = 0;
+                const averageRating = 0;
 
-                const user = {email,name,number,image,role,createdAt,numberOfParcelDelivered,totalReview,numberofParcelBooked,totalSpent,numberOfRating};
+                const user = {email,name,number,image,role,createdAt,numberOfParcelDelivered,totalReview,numberofParcelBooked,totalSpent,numberOfRating,averageRating};
                 // send data to the server
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
