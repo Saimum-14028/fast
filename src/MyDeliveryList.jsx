@@ -7,12 +7,24 @@ import swal from 'sweetalert';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
+const key = import.meta.env.VITE_mapBoxAPIKey;
+import "mapbox-gl/dist/mapbox-gl.css";
+import Map, {
+  Marker,
+  NavigationControl,
+  FullscreenControl,
+  GeolocateControl,
+} from "react-map-gl";
 
 const MyDeliveryList = () => {
     const { user, loading} = useContext(AuthContext);
     const [cart, setCart] = useState([]);
     const navigate = useNavigate();
     const [target, setTarget] = useState([])
+
+    const [lng, setLng] = useState(0);
+    const [lat, setLat] = useState(0);
+
 
     if (loading) 
         return <Loading></Loading>
@@ -146,6 +158,17 @@ const MyDeliveryList = () => {
              }
          })
      }
+
+     const handleLocation = _id => {
+    //    console.log(_id);
+
+        const target = cart.find(car => car._id === _id);
+
+        setLng(target.longitude);
+        setLat(target.latitude);
+
+    //    console.log(lng, lat);
+     }
     
     return (
         <div>
@@ -194,7 +217,40 @@ const MyDeliveryList = () => {
                                     <td>{card.delivery_address}</td>
                                     <td>{card.status}</td>
                                     <td>
-                                        <button className='btn btn-sm bg-blue-500 text-white'>View Location</button>
+                                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                                        <button className="btn btn-sm bg-blue-500 text-white" onClick={()=>{handleLocation(card._id);document.getElementById('my_modal_4').showModal()}}>View Location</button>
+                                        <dialog id="my_modal_4" className="modal">
+                                        <div className="modal-box w-1/2 max-w-5xl">
+                                            <div>
+                                            <h1 className='text-center font-semibold text-xl mb-2'>Delivery Location On Map</h1>
+                                            <Map
+                                                mapboxAccessToken={key}
+                                                style={{
+                                                width: "100%",
+                                                height: "60vh",
+                                                borderRadius: "15px",
+                                                border: "2px solid red",
+                                                }}
+                                                initialViewState={{
+                                                longitude: lng,
+                                                latitude: lat,
+                                                }}
+                                                mapStyle="mapbox://styles/mapbox/streets-v9"
+                                                >
+                                                <Marker longitude={lng} latitude={lat} />
+                                                <NavigationControl position="bottom-right" />
+                                                <FullscreenControl />
+                                                <GeolocateControl />
+                                            </Map>
+                                            </div>
+                                            <div className="modal-action">
+                                            <form method="dialog">
+                                                {/* if there is a button, it will close the modal */}
+                                                <button className="btn btn-sm bg-red-500 text-white">Close</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </dialog>
                                         {card.status === "On The Way" ? 
                                         <button onClick={() => handleDelivered(card._id)} className='btn btn-sm bg-green-500 text-white'>Delivered</button>: ""
                                         }
