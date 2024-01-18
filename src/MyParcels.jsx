@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import Loading from './Loading';
 import moment from 'moment';
 import ReviewModal from './ReviewModal';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 
 const MyParcels = () => {
     const { user, loading} = useContext(AuthContext);
@@ -250,8 +251,10 @@ const MyParcels = () => {
                                 <td>{card.delivery_men_id === "" ? "N/A" : card.delivery_men_id}</td> 
                                 <td>{card.status}</td> 
                                 <td>{card.payment_status === "Unpaid" ? 
-                                    <button className='btn btn-sm bg-green-500 text-white'>Pay Now</button> : 
-                                    <p className='text-green-500 font-medium'>Done</p>
+                                    <Link to={`/dashboard/payment/${card._id}`}>
+                                        <button className='btn btn-sm bg-green-500 text-white'>Pay Now</button>
+                                    </Link> : 
+                                    <PriceCheckIcon></PriceCheckIcon>
                                 }
                                 </td>
                                 <td>

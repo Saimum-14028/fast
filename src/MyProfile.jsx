@@ -6,6 +6,7 @@ import Loading from './Loading';
 import toast from 'react-hot-toast';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 const image_key = import.meta.env.VITE_image_hosting_key;
 const image_api = `https://api.imgbb.com/1/upload?key=${image_key}`;

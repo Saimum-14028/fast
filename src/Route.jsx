@@ -20,6 +20,8 @@ import MyDeliveryList from "./MyDeliveryList";
 import MyReviews from "./MyReviews";
 import UpdateParcel from "./UpdateParcel";
 import AllAdmins from "./AllAdmins";
+import Payment from "./Payment";
+import PaymentSuccess from "./PaymentSuccess";
 
 const myCreatedRoute =  createBrowserRouter([
     {
@@ -98,6 +100,19 @@ const myCreatedRoute =  createBrowserRouter([
                 element: (
                   <PrivateRoute><UserRoute><MyParcels></MyParcels></UserRoute></PrivateRoute>
                 ),
+            },
+            {
+              path: 'payment/:id',
+              element: (
+                <PrivateRoute><UserRoute><Payment></Payment></UserRoute></PrivateRoute>
+              ),
+              loader: ({params}) => fetch(`http://localhost:5000/parcels/${params.id}`),
+            },
+            {
+              path: 'payment success',
+              element: (
+                <PrivateRoute><UserRoute><PaymentSuccess></PaymentSuccess></UserRoute></PrivateRoute>
+              ),
             },
             {
                 path: 'my profile',

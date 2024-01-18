@@ -39,7 +39,7 @@ const UpdateParcel = () => {
   
  //   console.log(singleData);
 
-    const { _id, name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, prevCost, delivery_address, prevRequestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id, payment_status } = singleData;
+    const { _id, name, email, number, parcel_type, receiver_name, receiver_number, parcel_weight, prevCost, delivery_address, prevRequestedDeliveryDate, latitude, longitude, status, booking_date, approximate_delivery_date, delivery_men_id, delivery_men_email, payment_status } = singleData;
 
   //  console.log(singleData.cost);
 
