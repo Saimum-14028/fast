@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
     const [target, setTarget] = useState();
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/bookingdate`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/bookingdate`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);
@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/userCount`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/userCount`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/parcelCount`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcelCount`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     const status = "Delivered"
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/parcelCount?status=${status}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcelCount?status=${status}`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);

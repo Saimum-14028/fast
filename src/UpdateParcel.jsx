@@ -23,7 +23,7 @@ const UpdateParcel = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                  // console.log(data);
@@ -95,7 +95,7 @@ const UpdateParcel = () => {
 
         // Update data to the server
 
-        fetch(`http://localhost:5000/parcels/${singleData._id}`, {
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${singleData._id}`, {
             method: "PUT",
             //  mode: 'no-cors',
             headers: {
@@ -116,7 +116,7 @@ const UpdateParcel = () => {
 
                     //  console.log(userData);
 
-                    fetch(`http://localhost:5000/users/${user?.email}`, {
+                    fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`, {
                         method: "PUT",
                     //  mode: 'no-cors',
                         headers: {

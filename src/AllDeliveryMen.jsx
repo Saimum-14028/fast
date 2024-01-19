@@ -13,7 +13,7 @@ const AllDeliveryMen = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-         fetch(`http://localhost:5000/users?role=${query}`)
+         fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?role=${query}`)
             .then(res => res.json())
             .then(data => {
              //   console.log(data);

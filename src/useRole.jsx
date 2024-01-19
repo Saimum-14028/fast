@@ -9,7 +9,7 @@ const useRole = () => {
     queryKey: ['role',user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/users/${user?.email}`);
+      const res = await axios(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`);
       return res.data.role;
     },
   })

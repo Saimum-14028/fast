@@ -22,7 +22,7 @@ const ChectoutForm = ({singleData}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://brainy-boa-shoulder-pads.cyclic.app/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ price: singleData.cost }),
@@ -50,11 +50,11 @@ const ChectoutForm = ({singleData}) => {
         })
 
         if (error) {
-            console.log('payment error', error);
+          //  console.log('payment error', error);
             setError(error.message);
         }
         else {
-            console.log('payment method', paymentMethod)
+          //  console.log('payment method', paymentMethod)
             setError('');
         }
 
@@ -73,7 +73,7 @@ const ChectoutForm = ({singleData}) => {
             toast.error("An Error Found. Please Try Again");
         }
         else {
-            console.log('payment intent', paymentIntent)
+           // console.log('payment intent', paymentIntent)
             if (paymentIntent.status === 'succeeded') {
                 // console.log('transaction id', paymentIntent.id);
                 // setTransactionId(paymentIntent.id);
@@ -82,7 +82,7 @@ const ChectoutForm = ({singleData}) => {
 
                 // Update data to the server
 
-            fetch(`http://localhost:5000/parcels/${singleData._id}`, {
+            fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${singleData._id}`, {
             method: "PUT",
             //  mode: 'no-cors',
             headers: {
@@ -124,7 +124,7 @@ const ChectoutForm = ({singleData}) => {
                 }}
             />
             <div className='flex justify-center'>
-            <button className="btn btn-sm bg-green-500 text-white my-4" type="submit" >
+            <button className="btn btn-sm bg-green-500 text-white my-4" type="submit" disabled={!stripe || !clientSecret}>
                 Pay Now
             </button>
             </div>

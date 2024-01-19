@@ -28,7 +28,7 @@ const AllUsers = () => {
         return <Loading></Loading>
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/userCount?role=${role}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/userCount?role=${role}`)
         .then(res => res.json())
         .then(data => {
        //     console.log(data.length);
@@ -36,10 +36,10 @@ const AllUsers = () => {
         })
     }, [])
 
-    console.log(count);
+   // console.log(count);
 
     useEffect(() => {
-         fetch(`http://localhost:5000/users?role=${query}&page=${currentPage}&size=${itemsPerPage}`)
+         fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?role=${query}&page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
               //  console.log(data);
@@ -76,7 +76,7 @@ const AllUsers = () => {
 
             //   console.log(targetUser.email);
 
-                fetch(`http://localhost:5000/users/${targetUser.email}`, {
+                fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${targetUser.email}`, {
                 method: "PUT",
             //  mode: 'no-cors',
                 headers: {
@@ -123,7 +123,7 @@ const AllUsers = () => {
 
             //     console.log(targetUser.email);
 
-                fetch(`http://localhost:5000/users/${targetUser.email}`, {
+                fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${targetUser.email}`, {
                 method: "PUT",
                 //  mode: 'no-cors',
                 headers: {

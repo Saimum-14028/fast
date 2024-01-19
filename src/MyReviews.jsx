@@ -13,7 +13,7 @@ const MyReviews = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setTarget(data))
     }, [user.email],);
@@ -23,7 +23,7 @@ const MyReviews = () => {
   //  console.log(id);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?delivery_men_id=${id}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/reviews?delivery_men_id=${id}`)
             .then(res => res.json())
             .then(data => setCart(data))
     }, [id]);

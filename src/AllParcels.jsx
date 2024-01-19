@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import ManageModal from './ManageModal';
 
 const AllParcels = () => {
+
     const { user, loading} = useContext(AuthContext);
     const [cart, setCart] = useState([]);
     const [target, setTarget] = useState([]);
@@ -35,13 +36,13 @@ const AllParcels = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parcels`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels`)
             .then(res => res.json())
             .then(data => {setCart(data); setTarget(data)})
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?role=${query}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?role=${query}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -54,7 +55,7 @@ const AllParcels = () => {
   //  console.log(deliveryMen);
 
     const handleManage = _id => {
-        console.log(_id);
+    //    console.log(_id);
 
         const remaining = cart.find(car => car._id === _id);
         setTarget(remaining);
@@ -73,9 +74,9 @@ const AllParcels = () => {
         target.approximate_delivery_date = approximate_delivery_date;
         target.status = "On The Way";
 
-        console.log(target);
+   //     console.log(target);
 
-        fetch(`http://localhost:5000/parcels/${target._id}`, {
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${target._id}`, {
                 method: "PUT",
               //  mode: 'no-cors',
                 headers: {
@@ -101,11 +102,11 @@ const AllParcels = () => {
     
           //  const status = event.target.role.value;
     
-        //    console.log(status);
+         //   console.log(startDate, endDate);
         if (loading) 
         return <Loading></Loading>
             
-        fetch(`http://localhost:5000/parcels?startDate=${startDate}&endDate=${endDate}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?startDate=${startDate}&endDate=${endDate}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -121,7 +122,7 @@ const AllParcels = () => {
             </Helmet>
 
             {/* Render the modal component */}
-            <ManageModal isOpen={isModalOpen} onClose={closeModal} handleAssign={handleAssign} approximate_delivery_date={approximate_delivery_date} deliveryMen={deliveryMen}/>
+            <ManageModal isOpen={isModalOpen} onClose={closeModal} handleAssign={handleAssign} approximate_delivery_date={approximate_delivery_date} deliveryMen={deliveryMen} setapproximate_delivery_date={setapproximate_delivery_date}/>
             
             <motion.div animate={{
                     scale: [1, 2, 2, 1, 1],

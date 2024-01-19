@@ -93,7 +93,7 @@ const myCreatedRoute =  createBrowserRouter([
               element : (
                 <PrivateRoute><UserRoute><UpdateParcel></UpdateParcel></UserRoute></PrivateRoute>
               ),
-              loader: ({params}) => fetch(`http://localhost:5000/parcels/${params.id}`),
+              loader: ({params}) => fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${params.id}`),
             },
             {
                 path: 'my parcels',
@@ -106,7 +106,7 @@ const myCreatedRoute =  createBrowserRouter([
               element: (
                 <PrivateRoute><UserRoute><Payment></Payment></UserRoute></PrivateRoute>
               ),
-              loader: ({params}) => fetch(`http://localhost:5000/parcels/${params.id}`),
+              loader: ({params}) => fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${params.id}`),
             },
             {
               path: 'payment success',

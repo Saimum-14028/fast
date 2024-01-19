@@ -21,7 +21,7 @@ const MyProfile = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setCart(data))
     }, [user.email],);
@@ -42,7 +42,7 @@ const MyProfile = () => {
             toast.success('User Updated successfully');
         })
 
-        await fetch(`http://localhost:5000/users/${user?.email}`, {
+        await fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`, {
             method: "PUT",
             //  mode: 'no-cors',
             headers: {
@@ -53,7 +53,7 @@ const MyProfile = () => {
             })
             .then((res) => res.json())
             .then((data) => {           
-                console.log(data);
+        //        console.log(data);
                 if(data.modifiedCount || data.upsertedCount){
                     swal(
                         'Updated!',

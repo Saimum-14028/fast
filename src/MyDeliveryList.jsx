@@ -30,13 +30,13 @@ const MyDeliveryList = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setTarget(data))
     }, [user.email],);
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/parcels?delivery_men_email=${user.email}`)
+    //     fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?delivery_men_email=${user.email}`)
     //         .then(res => res.json())
     //         .then(data => setCart(data))
     // }, [user.email],);
@@ -45,7 +45,7 @@ const MyDeliveryList = () => {
    // console.log(id);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parcels?delivery_men_id=${id}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?delivery_men_id=${id}`)
             .then(res => res.json())
             .then(data => setCart(data))
     }, [id],);
@@ -65,7 +65,7 @@ const MyDeliveryList = () => {
 
     //         console.log(newParcel.status);
 
-                fetch(`http://localhost:5000/parcels/${_id}`, {
+                fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${_id}`, {
                 method: "PUT",
             //  mode: 'no-cors',
                 headers: {
@@ -86,7 +86,7 @@ const MyDeliveryList = () => {
 
                         target.numberOfParcelDelivered = parseInt(target.numberOfParcelDelivered) + 1;
 
-                        fetch(`http://localhost:5000/users/${user?.email}`, {
+                        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`, {
                             method: "PUT",
                         //  mode: 'no-cors',
                             headers: {
@@ -117,7 +117,7 @@ const MyDeliveryList = () => {
     }
 
   const handleCancel = _id => {
-         console.log(_id);
+   //      console.log(_id);
          swal({
              title: 'Are you sure?',
              text: "You won't be able to revert this!",
@@ -131,7 +131,7 @@ const MyDeliveryList = () => {
  
         //         console.log(newParcel.status);
  
-                 fetch(`http://localhost:5000/parcels/${_id}`, {
+                 fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${_id}`, {
                  method: "PUT",
                //  mode: 'no-cors',
                  headers: {

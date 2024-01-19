@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 
-const ManageModal = ({ isOpen, onClose, handleAssign, approximate_delivery_date, deliveryMen }) => {
+const ManageModal = ({ isOpen, onClose, handleAssign, approximate_delivery_date, deliveryMen, setapproximate_delivery_date }) => {
   return (
     <div style={{ display: isOpen ? 'block' : 'none', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '20px', zIndex: 999 }}>
       <div className="modal-box">

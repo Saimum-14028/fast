@@ -18,7 +18,7 @@ const Payment = () => {
 
     const singleData = useLoaderData();
 
-    console.log(singleData);
+   // console.log(singleData);
 
     return (
         <div>

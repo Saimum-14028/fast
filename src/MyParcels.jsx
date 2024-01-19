@@ -32,7 +32,7 @@ const MyParcels = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parcels?email=${user.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?email=${user.email}`)
             .then(res => res.json())
             .then(data => setCart(data))
     }, [user.email],);
@@ -47,7 +47,7 @@ const MyParcels = () => {
         if (loading) 
         return <Loading></Loading>
         
-        fetch(`http://localhost:5000/parcels?email=${user.email}&status=${status}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?email=${user.email}&status=${status}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -69,7 +69,7 @@ const MyParcels = () => {
                 const newParcel = cart.find(car => car._id === _id);
                 newParcel.status = "Cancelled";
 
-                fetch(`http://localhost:5000/parcels/${_id}`, {
+                fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels/${_id}`, {
                 method: "PUT",
               //  mode: 'no-cors',
                 headers: {
@@ -98,7 +98,7 @@ const MyParcels = () => {
     }
 
     const handleReview = _id => {
-        console.log(_id);
+      //  console.log(_id);
 
         const remaining = cart.find(car => car._id === _id);
    //     console.log(remaining);
@@ -109,7 +109,7 @@ const MyParcels = () => {
 
         // console.log(query);
 
-        // fetch(`http://localhost:5000/users?email=${deliveryMan?.delivery_men_email}`)
+        // fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?email=${deliveryMan?.delivery_men_email}`)
         //     .then((res) => res.json())
         //     .then(data => setNewUser(data))
     }
@@ -117,7 +117,7 @@ const MyParcels = () => {
   //  console.log(deliveryMan);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${deliveryMan?.delivery_men_email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?email=${deliveryMan?.delivery_men_email}`)
             .then(res => res.json())
             .then(data => setNewUser(data))
     }, [deliveryMan?.delivery_men_email],);
@@ -140,7 +140,7 @@ const MyParcels = () => {
 
       //   console.log(target);
  
-         fetch('http://localhost:5000/reviews', {
+         fetch('https://brainy-boa-shoulder-pads.cyclic.app/reviews', {
             method: 'POST',
             //mode: 'no-cors',
             headers: {
@@ -160,9 +160,9 @@ const MyParcels = () => {
                     newUser[0].numberOfRating = parseInt(newUser[0].numberOfRating) + 1;
                     newUser[0].averageRating = parseFloat(newUser[0].totalReview/newUser[0].numberOfRating);
 
-                    console.log(newUser[0]);
+           //         console.log(newUser[0]);
 
-                    fetch(`http://localhost:5000/users/${newUser[0]?.email}`, {
+                    fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${newUser[0]?.email}`, {
                         method: "PUT",
                     //  mode: 'no-cors',
                         headers: {

@@ -21,7 +21,7 @@ const BookParcel = () => {
         return <Loading></Loading>
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                  // console.log(data);
@@ -86,7 +86,7 @@ const BookParcel = () => {
        //  console.log(newParcel);
 
        // send data to the server
-        fetch('http://localhost:5000/parcels', {
+        fetch('https://brainy-boa-shoulder-pads.cyclic.app/parcels', {
             method: 'POST',
             //mode: 'no-cors',
             headers: {
@@ -110,7 +110,7 @@ const BookParcel = () => {
 
             //  console.log(userData);
 
-                fetch(`http://localhost:5000/users/${user?.email}`, {
+                fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users/${user?.email}`, {
                     method: "PUT",
                 //  mode: 'no-cors',
                     headers: {

@@ -8,12 +8,12 @@ const TopDeliveryMen = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?sortField=numberOfParcelDelivered&sortOrder=desc&sortf=averageRating&sorto=desc`)
+        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/users?sortField=numberOfParcelDelivered&sortOrder=desc&sortf=averageRating&sorto=desc`)
             .then(res => res.json())
             .then(data => setCart(data.filter(card => card.role === "Delivery Men")))
     }, []);
 
-    console.log(cart);
+//   console.log(cart);
 
     return (
         <div className='w-11/12 mx-auto my-5'>

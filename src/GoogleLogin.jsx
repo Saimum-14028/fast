@@ -33,7 +33,7 @@ const GoogleLogin = () => {
 
                 const user = {email,name,number,image,role,createdAt,numberOfParcelDelivered,totalReview,numberofParcelBooked,totalSpent,numberOfRating,averageRating};
                 // send data to the server
-                fetch('http://localhost:5000/users', {
+                fetch('https://brainy-boa-shoulder-pads.cyclic.app/users', {
                     method: 'POST',
                     //mode: 'no-cors',
                     headers: {

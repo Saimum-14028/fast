@@ -121,7 +121,7 @@ const Statistics = () => {
           },
     })
 
-    console.log(target);
+ //   console.log(target);
 
     return (
         <div >
