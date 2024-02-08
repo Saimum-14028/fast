@@ -100,13 +100,14 @@ const AllParcels = () => {
         const handleSearch = event => {
             event.preventDefault();
     
-          //  const status = event.target.role.value;
+            // const status = event.target.role.value;
     
-         //   console.log(startDate, endDate);
-        if (loading) 
-        return <Loading></Loading>
+           //  console.log(startDate, endDate);
+
+            if (loading) 
+            return <Loading></Loading>
             
-        fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?startDate=${startDate}&endDate=${endDate}`)
+            fetch(`https://brainy-boa-shoulder-pads.cyclic.app/parcels?startDate=${startDate}&endDate=${endDate}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -142,6 +143,7 @@ const AllParcels = () => {
                         <div className="w-full">
                             <label htmlFor="end_date" className="block mb-2 text-sm font-medium ">End Date</label>
                             <DatePicker className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" selected={endDate} onChange={(date) => setEndDate(date)} dateFormat="dd-MM-yyyy" required/>
+                            {/* <input type="date" name="date" id="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required selected={endDate} onChange={(date) => setEndDate(date)} ></input> */}
                         </div>
                     </div>
                     <div className="form-control">
