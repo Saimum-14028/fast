@@ -15,7 +15,7 @@ const ChectoutForm = ({singleData}) => {
     const stripe = useStripe();
     const elements = useElements();
 
- //   console.log(singleData);
+  //  console.log(singleData);
 
     if(loading)
         <Loading></Loading>
@@ -75,8 +75,36 @@ const ChectoutForm = ({singleData}) => {
         else {
            // console.log('payment intent', paymentIntent)
             if (paymentIntent.status === 'succeeded') {
-                // console.log('transaction id', paymentIntent.id);
+              //   console.log('transaction id', paymentIntent.id);
                 // setTransactionId(paymentIntent.id);
+
+                 // now save the payment in the database
+                const payment = {
+                    name: user?.displayName,
+                    email: user.email,
+                    price: singleData.cost,
+                    transactionId: paymentIntent.id
+                }
+
+               // console.log(payment);
+
+                // send data to the server
+        fetch('https://brainy-boa-shoulder-pads.cyclic.app/payments', {
+            method: 'POST',
+            //mode: 'no-cors',
+            headers: {
+                'content-type': 'application/json'
+                //'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(payment)
+        })
+        .then(res => res.json())
+        .then(data => {
+             // console.log(data);
+              if(data.insertedId){
+                  toast.success('Please check your Email for details.');
+              }
+        })
 
                 singleData.payment_status = "Paid";
 
